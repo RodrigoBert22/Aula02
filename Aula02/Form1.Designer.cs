@@ -130,12 +130,13 @@
             this.btnCalcular.TabIndex = 10;
             this.btnCalcular.Text = "Calcular IMC";
             this.btnCalcular.UseVisualStyleBackColor = true;
+            this.btnCalcular.Click += new System.EventHandler(this.BtnCalcular_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 372);
+            this.ClientSize = new System.Drawing.Size(434, 372);
             this.Controls.Add(this.btnCalcular);
             this.Controls.Add(this.txtAltura);
             this.Controls.Add(this.label4);

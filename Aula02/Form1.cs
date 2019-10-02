@@ -81,12 +81,13 @@ namespace Aula02
             // Meses.Add(7, "Julho);
 
             int indice = 0;
-
+            /*
             while(indice < Dias.Length)
             {
                 cbxDias.Items.Add(Dias[indice]);
                 indice++;
             }
+            */
             for(int i = 0; i < Dias.Length; i++)
             {
                 cbxDias.Items.Add(Dias[i]);
@@ -100,9 +101,60 @@ namespace Aula02
             cbxMeses.DisplayMember = "Value";
             cbxMeses.ValueMember = "Key";
 
-            
+        }
+
+        private string VerificarImc(decimal peso, decimal altura, out decimal imc)
+        {
+            imc = peso / (altura * altura);
+            if (imc < (decimal)18.5)
+            {
+                return "Abaixo do peso";
+            }
+            else if (imc >= (decimal)18.5 && imc < 25)
+            {
+                return "Peso normal";
+            }
+            else if (imc >= 25 && imc < 30)
+            {
+                return "Sobrepeso";
+            }
+            else if (imc >= 30 && imc < 35)
+            {
+                return "Obesidade grau 1";
+            }
+            else if (imc >= 35 && imc < 39)
+            {
+                return "Obesidade grau 2";
+            }
+            else
+            {
+                return "Obesidade grau 3";
+            }
+        }
+
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            string nome = txtNome.Text;
+            //Altura = decimal.Parse(txtAltura.Text);
+            if (!decimal.TryParse(txtAltura.Text.Replace(".",","), out Altura))
+            {
+                MessageBox.Show("Altura Inválida");
+            }
+
+            if (!decimal.TryParse(txtPeso.Text, out Peso))
+            {
+                MessageBox.Show("Peso Inválido");
+            }
+
+            var descricao = VerificarImc(Peso, Altura, out var imc);
+            MessageBox.Show($"Nome: {nome}\nNascimento: {cbxDias.Text} de {cbxMeses.Text} de {cbxAnos.Text}\nIMC: {imc.ToString("N2")}\n\n{descricao}");
+
 
         }
+
+       
+
 
     }
 }
